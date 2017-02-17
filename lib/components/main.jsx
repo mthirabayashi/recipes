@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './header';
+import Search from './search';
 
 class Main extends React.Component {
   constructor(props) {
@@ -7,7 +8,10 @@ class Main extends React.Component {
   }
   render() {
     return (
-      <Header/>
+      <div>
+        <Header/>
+        <Search/>
+      </div>
     );
   }
 }
