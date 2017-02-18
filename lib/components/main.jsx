@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './header';
 import Search from './search';
+import Results from './results';
 
 class Main extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class Main extends React.Component {
       <div>
         <Header/>
         <Search/>
+        <Results/>
       </div>
     );
   }
