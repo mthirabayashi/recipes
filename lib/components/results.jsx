@@ -1,70 +1,63 @@
 import React from 'react';
 import ResultItem from './result_item';
-import axios from 'axios';
 import $ from 'jquery';
 
 class Results extends React.Component {
   constructor(props) {
     super(props);
+    this.updateResults = this.updateResults.bind(this);
+    this.state = {
+      results: []
+    };
   }
 
   componentDidMount() {
-    // debugger
-    window.$ = $;
-    console.log('results component mounted');
-    // axios.get('https://api.github.com/users/' + 'mthirabayashi')
-    //   .then(function(response){
-    //     console.log(response.data); // ex.: { user: 'Your User'}
-    //     console.log(response.status); // ex.: 200
+    // window.$ = $;
+    // console.log('results component mounted');
+    // const success = function(data) {
+    //   console.log(data);
+    //   console.log(data.results);
+    //   data.results.forEach(recipe => {
+    //     console.log(recipe.title);
     //   });
-    // axios.get('http://www.shareagram.us/api/users/2')
-    //   .then(function(response){
-    //     console.log(response.data); // ex.: { user: 'Your User'}
-    //     console.log(response.status); // ex.: 200
-    //   });
-      const success = function(data) {
-        console.log(data);
-      };
-      const error = function(data) {
-        console.log(data);
-      };
-      // const getRecipes = $.ajax({
-      //   method: 'get',
-      //   url: 'http://www.recipepuppy.com/api/?i=onions,garlic&q=omelet&p=3',
-      //   success
-      // });
-      // url: 'http://www.recipepuppy.com/api/?i=onions,garlic&q=omelet&p=3',
+    // };
+    // const error = function(data) {
+    //   console.log(data);
+    // };
 
-      function logResults(json){
-        console.log(json);
-      }
-
-       $.ajax({
-        url: `http://www.recipepuppy.com/api/?i=onions,garlic&q=omelet&p=3`,
-        dataType: 'jsonp',
-        jsonpCallback: 'callback',
-        success
-      });
+     $.ajax({
+      url: `http://www.recipepuppy.com/api/?i=onions,garlic&q=omelet&p=3`,
+      dataType: 'jsonp',
+      jsonpCallback: 'callback',
+      success: this.updateResults
+    });
 
   }
 
-  displayAllResults() {
-    return(
-      <div>
-        <ResultItem/>
-        <ResultItem/>
-        <ResultItem/>
-        <ResultItem/>
-        <ResultItem/>
-        <ResultItem/>
-      </div>
-    );
+  updateResults(data) {
+    let results = this.state.results.concat(data.results);
+    this.setState({
+      results
+    });
   }
+
+  // displayAllResults() {
+  //   console.log(this.state.results);
+  //   return(
+  //     <div>
+  //       {this.state.results.map((recipe, idx) => (
+  //         <li key={`result${idx}`}>{recipe.title}</li>
+  //       ))}
+  //     </div>
+  //   );
+  // }
 
   render() {
     return (
       <div>
-        {this.displayAllResults()}
+        {this.state.results.map((recipe, idx) => (
+          <li key={`result${idx}`}>{recipe.title}</li>
+        ))}
       </div>
     );
   }
