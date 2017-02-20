@@ -5,10 +5,10 @@ import $ from 'jquery';
 class Results extends React.Component {
   constructor(props) {
     super(props);
-    this.updateResults = this.updateResults.bind(this);
-    this.state = {
-      results: []
-    };
+    // this.updateResults = this.updateResults.bind(this);
+    // this.state = {
+    //   results: []
+    // };
   }
 
   componentDidMount() {
@@ -24,22 +24,22 @@ class Results extends React.Component {
     // const error = function(data) {
     //   console.log(data);
     // };
-
-     $.ajax({
-      url: `http://www.recipepuppy.com/api/?i=onions,garlic&q=omelet&p=3`,
-      dataType: 'jsonp',
-      jsonpCallback: 'callback',
-      success: this.updateResults
-    });
+    //
+    //  $.ajax({
+    //   url: `http://www.recipepuppy.com/api/?i=onions,garlic&q=omelet&p=3`,
+    //   dataType: 'jsonp',
+    //   jsonpCallback: 'callback',
+    //   success: this.updateResults
+    // });
 
   }
 
-  updateResults(data) {
-    let results = this.state.results.concat(data.results);
-    this.setState({
-      results
-    });
-  }
+  // updateResults(data) {
+  //   let results = this.state.results.concat(data.results);
+  //   this.setState({
+  //     results
+  //   });
+  // }
 
   // displayAllResults() {
   //   console.log(this.state.results);
@@ -53,9 +53,10 @@ class Results extends React.Component {
   // }
 
   render() {
+    console.log(this.props);
     return (
       <div>
-        {this.state.results.map((recipe, idx) => (
+        {this.props.items.map((recipe, idx) => (
           <li key={`result${idx}`}>{recipe.title}</li>
         ))}
       </div>
