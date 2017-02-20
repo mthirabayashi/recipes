@@ -52,12 +52,31 @@ class Results extends React.Component {
   //   );
   // }
 
+  displayItem(recipe, idx) {
+    if (recipe.thumbnail.length > 0) {
+      return (
+        <div key={`result${idx}`}>
+          <h4>{recipe.title}</h4>
+          <img src={recipe.thumbnail} alt="no pic" height="42" width="42"/>
+          <li>{recipe.ingredients}</li>
+        </div>
+      );
+    } else {
+      return (
+        <div key={`result${idx}`}>
+          <h4>{recipe.title}</h4>
+          <li>{recipe.ingredients}</li>
+        </div>
+      );
+    }
+  }
+
   render() {
     console.log(this.props);
     return (
       <div>
         {this.props.items.map((recipe, idx) => (
-          <li key={`result${idx}`}>{recipe.title}</li>
+          this.displayItem(recipe, idx)
         ))}
       </div>
     );
