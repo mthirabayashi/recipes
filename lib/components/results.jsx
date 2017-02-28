@@ -76,10 +76,17 @@ class Results extends React.Component {
     return (
       <div>
         {this.props.items.map((recipe, idx) => (
-          this.displayItem(recipe, idx)
+          <ResultItem key={`result${idx}`} title={recipe.title} thumbnail={recipe.thumbnail} ingredients={recipe.ingredients} url={recipe.href}/>
         ))}
       </div>
     );
+    // return (
+    //   <div>
+    //     {this.props.items.map((recipe, idx) => (
+    //       this.displayItem(recipe, idx)
+    //     ))}
+    //   </div>
+    // );
   }
 }
 

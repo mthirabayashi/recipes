@@ -2,9 +2,11 @@ import React from 'react';
 
 const Header = () => {
   return (
-    <div>
-      <h1>Recipes!!!</h1>
-      <h4>Powered by Recipe Puppy API</h4>
+    <div className='header'>
+      <div>
+        <h1 className='header-title'>Recipes!!!</h1>
+        <p className='header-rp'>Powered by Recipe Puppy API</p>
+      </div>
     </div>
   );
 };

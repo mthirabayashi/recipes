@@ -22,7 +22,7 @@ class Search extends React.Component {
     let waiting = false;
     let endScrollHandle;
     const fetchMore = () => {
-      if (document.body.offsetHeight - window.scrollY < 750) {
+      if (document.body.offsetHeight - window.scrollY < 950) {
         console.log('reached bottom of page');
         // console.log(this.props.posts.length);
         // console.log('fetching more posts');
@@ -73,12 +73,14 @@ class Search extends React.Component {
     }
     url += '&p=1';
     console.log(url);
+    const errors = function(data) {
+      console.log(data);
+    };
     $.ajax({
       url: url,
       dataType: 'jsonp',
-      jsonpCallback: 'callback',
-      success: this.getInitialResults
-    });
+      jsonpCallback: 'callback'
+    }).then(this.getInitialResults).catch(errors);
     this.setState({page: 1});
   }
 
@@ -93,12 +95,14 @@ class Search extends React.Component {
     const newPage = this.state.page + 1;
     url += '&p=' + newPage;
     console.log(url);
+    const errors = function(data) {
+      console.log(data);
+    };
     $.ajax({
       url: url,
       dataType: 'jsonp',
-      jsonpCallback: 'callback',
-      success: this.updateResults
-    });
+      jsonpCallback: 'callback'
+    }).then(this.updateResults).catch(errors);
     this.setState({page: newPage});
   }
 
@@ -116,17 +120,17 @@ class Search extends React.Component {
   }
 
   displayAllResults() {
-    console.log(this.state.results);
+    // console.log(this.state.results);
     return (
       <Results items={this.state.results}/>
     );
   }
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     return (
-      <div>
-        <form>
+      <div className='search'>
+        <form className='search-box'>
           <input placeholder='Recipe Name' onChange={this.updateField('keywords')}></input>
           <input placeholder='Ingredients' onChange={this.updateField('ingredients')}></input>
           <button onClick={this.getRecipes}>Search</button>
