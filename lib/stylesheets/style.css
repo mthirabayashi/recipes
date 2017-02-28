@@ -49,14 +49,18 @@ h1, h2, h3, h4, h5, div, p {
 }
 
 .result-ingredients {
-  width: 35%;
+  width: 70%;
 }
 
 .result-item-img-ing {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .result-item:first-child {
   border-top: 1px solid black;
+}
+
+.visited {
+  background-color: red;
 }
